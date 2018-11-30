@@ -8,26 +8,21 @@ function getQuote() {
     //data: {cat: "movies"},
     success: function(data) {
 
-      console.log(data);
-      
-
       $("#quote").fadeOut(function(){
-        $("#quote").text('"'+data.quote+'"')
+        $("#quote").text('"'+data[0].quote+'"')
       }).fadeIn();
 
       $("#author").fadeOut(function(){
-        $("#author").text(data.author)
+        $("#author").text(data[0].author)
       }).fadeIn();
 
-
-
-
-      var quoteURI = data.quote+" --> "+data.author;
+      var quoteURI = data[0].quote+" >> "+data[0].author;
+      console.log(quoteURI);
       quoteURI = encodeURI(quoteURI);
       $("#tweet").attr("href", "https://twitter.com/intent/tweet?&text=");
       var tweetLink=$("#tweet").attr("href");
       tweetLink = tweetLink.replace("text=", "text=" + quoteURI)
-      $("#tweet").attr("href", tweetLink);
+      $("#tweetLink").attr("href", tweetLink);
     }
   })
 }
